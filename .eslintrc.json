@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["airbnb-base", "eslint:recommended", "plugin:node/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": "warn", // Disable rule that warns about unused variables
+    "no-console": "off", // Disable rule that warns about console statements
+    "indent": ["error", 2], // Enforce 2-space indentation
+    "semi": ["error", "always"], // Require semicolons at the end of statements
+    "quotes": ["error", "single"], // Enforce the use of single quotes
+    "comma-dangle": ["error", "never"], // Disallow trailing commas
+    "arrow-spacing": ["error", { "before": true, "after": true }], // Require spaces before and after arrow functions
+    "linebreak-style": ["error", "windows"],
+    "eol-last": ["error", "always"]
+  }
+}
