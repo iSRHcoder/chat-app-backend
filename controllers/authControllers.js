@@ -18,7 +18,7 @@ export const signupUser = async (req, res) => {
     if (user) {
       return res.status(400).json({
         status: 'failed',
-        message: `${user} already exist, please use different userName`,
+        message: `${user.userName} already exist, please use different userName`,
       });
     }
 
@@ -47,6 +47,7 @@ export const signupUser = async (req, res) => {
         fullName: newUser.fullName,
         userName: newUser.userName,
         profilePic: newUser.profilePic,
+        gender: newUser.gender,
       });
     } else {
       return res.status(400).json({
@@ -55,7 +56,7 @@ export const signupUser = async (req, res) => {
       });
     }
   } catch (err) {
-    console.log('error in signup controller');
+    console.log('error in signup controller', err.message);
     res.status(500).json({
       status: 'failed',
       error: `error in signup controller`,
