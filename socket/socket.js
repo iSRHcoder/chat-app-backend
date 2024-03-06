@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
   io.emit('get online users', Object.keys(userSocketMap));
 
   socket.on('disconnect', () => {
-    console.log('a user is disconnected:', socket.id);
+    console.log('user is disconnected:', socket.id);
     delete userSocketMap[userId];
     io.emit('get online users', Object.keys(userSocketMap));
   });
