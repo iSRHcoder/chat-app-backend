@@ -15,6 +15,9 @@ app.use(express.json()); // to parse the incoming requests with JSON payloads(fr
 app.use(cookieParser());
 // app.use(bodyParser.json());
 // app.use(cors());
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/users', userRoutes);
