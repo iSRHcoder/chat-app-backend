@@ -14,10 +14,24 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors({
-    origin: 'https://chat-app-frontend-mu-dusky.vercel.app',
-    credentials: true,
-  }));
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests from specified origins
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'https://chat-app-frontend-mu-dusky.vercel.app',
+    ]; // Add your frontend URL here
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
