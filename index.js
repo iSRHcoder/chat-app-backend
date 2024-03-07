@@ -14,7 +14,13 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173', // Adjust this to match your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  }),
+);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
