@@ -14,7 +14,10 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://chat-app-frontend-mu-dusky.vercel.app',
+    credentials: true,
+  }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
