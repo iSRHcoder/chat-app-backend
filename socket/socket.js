@@ -9,7 +9,7 @@ const io = new Server(server, {
   cors: {
     origin: [
       'http://localhost:5173',
-      'https://chat-app-frontend-mu-dusky.vercel.app',
+      'https://chat-app-frontend-rose.vercel.app',
     ],
     methods: ['GET', 'POST'],
   },
@@ -22,8 +22,6 @@ export const getReceiverSocketId = (receiverId) => {
 const userSocketMap = {};
 
 io.on('connection', (socket) => {
-  console.log('a user connected:', socket.id);
-
   const userId = socket.handshake.query.userId;
   if (userId !== undefined && userId !== 'undefined') {
     userSocketMap[userId] = socket.id;
@@ -33,7 +31,6 @@ io.on('connection', (socket) => {
   io.emit('get online users', Object.keys(userSocketMap));
 
   socket.on('disconnect', () => {
-    console.log('a user is disconnected:', socket.id);
     delete userSocketMap[userId];
     io.emit('get online users', Object.keys(userSocketMap));
   });
